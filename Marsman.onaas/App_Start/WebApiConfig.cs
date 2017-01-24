@@ -16,8 +16,8 @@ namespace Marsman.onaas
 
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
-				routeTemplate: "api/{controller}/{id}",
-				defaults: new { id = RouteParameter.Optional }
+				routeTemplate: "{controller}/{activity}/{error}",
+				defaults: new { id = RouteParameter.Optional, error = RouteParameter.Optional }
 			);
 		}
 	}
