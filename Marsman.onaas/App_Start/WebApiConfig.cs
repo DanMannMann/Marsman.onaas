@@ -15,9 +15,21 @@ namespace Marsman.onaas
 			config.MapHttpAttributeRoutes();
 
 			config.Routes.MapHttpRoute(
-				name: "DefaultApi",
+				name: "OhNoApi",
 				routeTemplate: "{controller}/{activity}/{error}",
-				defaults: new { id = RouteParameter.Optional, error = RouteParameter.Optional }
+				defaults: new {  }, constraints: new { controller = "OhNo" }
+			);
+
+			config.Routes.MapHttpRoute(
+				name: "OhYeahApi",
+				routeTemplate: "{controller}",
+				defaults: new {  }, constraints: new { controller = "OhYeah" }
+			);
+
+			config.Routes.MapHttpRoute(
+				name: "TestApi",
+				routeTemplate: "{controller}/{action}",
+				defaults: new { }, constraints: new { controller = "Test" }
 			);
 		}
 	}
