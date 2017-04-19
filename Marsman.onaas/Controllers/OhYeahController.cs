@@ -11,6 +11,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web;
 
 namespace Marsman.onaas.Controllers
 {
@@ -80,4 +82,34 @@ namespace Marsman.onaas.Controllers
 		}
 	}
 
+	public class OhYeahWebController : ApiController
+	{
+		[System.Web.Http.HttpGet]
+		public HttpResponseMessage Web(string uri)
+		{
+			var body = RenderViewToString("OhYeahWeb", "~/Views/OhYeahWeb.cshtml", uri);
+			var c = Request.CreateResponse(HttpStatusCode.OK);
+			c.Content = new StringContent(body);
+			c.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+			return c;
+		}
+
+		private string RenderViewToString(string controllerName, string viewName, object viewData)
+		{
+			using (var writer = new StringWriter())
+			{
+				var routeData = new RouteData();
+				routeData.Values.Add("controller", controllerName);
+				var fakeControllerContext = new ControllerContext(new HttpContextWrapper(new HttpContext(new HttpRequest(null, "http://google.com", null), new HttpResponse(null))), routeData, new FakeController());
+				var razorViewEngine = new RazorViewEngine();
+				var razorViewResult = razorViewEngine.FindView(fakeControllerContext, viewName, "", false);
+
+				var viewContext = new ViewContext(fakeControllerContext, razorViewResult.View, new ViewDataDictionary(viewData), new TempDataDictionary(), writer);
+				razorViewResult.View.Render(viewContext, writer);
+				return writer.ToString();
+			}
+		}
+	}
+
+	public class FakeController : ControllerBase { protected override void ExecuteCore() { } }
 }

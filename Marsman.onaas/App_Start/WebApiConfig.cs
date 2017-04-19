@@ -27,6 +27,12 @@ namespace Marsman.onaas
 			);
 
 			config.Routes.MapHttpRoute(
+				name: "LabQuoteApi",
+				routeTemplate: "{controller}/{source}",
+				defaults: new { }, constraints: new { controller = "LabQuote" }
+			);
+
+			config.Routes.MapHttpRoute(
 				name: "TestApi",
 				routeTemplate: "{controller}/{action}",
 				defaults: new { }, constraints: new { controller = "Test" }

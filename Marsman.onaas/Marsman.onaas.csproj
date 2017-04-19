@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\LabQuoteController.cs" />
     <Compile Include="Controllers\OhNoController.cs" />
     <Compile Include="Controllers\OhYeahController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -151,7 +152,10 @@
     <Content Include="Global.asax" />
     <Content Include="gapstown-b.ttf" />
     <Content Include="gapstown-r.ttf" />
+    <Content Include="arial.ttf" />
+    <Content Include="ariali.ttf" />
     <None Include="Properties\PublishProfiles\onaas.pubxml" />
+    <Content Include="labquotetemplate.png" />
     <Content Include="ohyeah.png" />
     <Content Include="template.png" />
     <Content Include="Web.config" />
@@ -161,6 +165,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\OhYeahWeb.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

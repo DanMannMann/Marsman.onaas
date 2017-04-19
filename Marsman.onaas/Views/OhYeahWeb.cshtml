@@ -1,0 +1,34 @@
+﻿@inherits System.Web.Mvc.WebViewPage<string>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OhYeahWeb</title>
+	<style>
+		iframe {
+			position: absolute;
+			border: none;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div style="overflow:hidden">
+		<div style="z-index:99;position:absolute;">
+			<img src="~/ohyeah.png" style="position:relative;margin-left:50%;margin-top:50%" />
+		</div>
+
+		<div>
+			<iframe src="@Model"> </iframe>
+		</div>
+	</div>
+</body>
+</html>
